@@ -29,8 +29,45 @@ The results should have this structure:
  *  greater than 10.x.x
  */
 
+/*
+fetch("http://ambush-api.inyourarea.co.uk/ambush/intercept", {
+  method: 'POST',
+  body: JSON.stringify(body),
+  headers: { 
+    "Content-Type": "application/json" 
+  }
+})
+.then(res => res.json())
+.then(json => console.log(json.content[0].package))
+let count = 0;
+for (i=0; i <json.content.length; i++) {
+  if (json.content[i].package.version > 10) count++
+}
+return count
+
+*/
 module.exports = async function countMajorVersionsAbove10() {
-  // TODO
+  const fetch = require('node-fetch');
+  const body = {
+    "url": "https://api.npms.io/v2/search/suggestions?q=react",
+    "method": "GET",
+    "return_payload": true
+  }
+  
+    const response = await fetch("http://ambush-api.inyourarea.co.uk/ambush/intercept", {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: { 
+      "Content-Type": "application/json" 
+    }
+  })
+
+  const data = await response.json();
+  let count = 0;
+
+  for (let i=0; i <data.content.length; i++) {
+    if ((parseFloat(data.content[i].package.version)) > 10) count++
+  }
 
   return count
-};
+}
