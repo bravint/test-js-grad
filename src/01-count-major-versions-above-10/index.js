@@ -51,6 +51,7 @@ module.exports = async function countMajorVersionsAbove10() {
   for (let i=0; i <data.content.length; i++) {
     if ((parseFloat(data.content[i].package.version)) > 10) count++
   }
-
+  
+  //console.log ('The number of packages that have a major semver version greater than 10.x.x =' , count);
   return count;
 }

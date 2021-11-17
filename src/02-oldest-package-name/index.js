@@ -60,5 +60,6 @@ module.exports = async function oldestPackageName() {
     }
   }
 
+  //console.log('The package that has the oldest "date" value is', name)
   return name;
 }
