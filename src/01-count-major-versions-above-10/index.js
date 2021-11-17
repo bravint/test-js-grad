@@ -29,23 +29,6 @@ The results should have this structure:
  *  greater than 10.x.x
  */
 
-/*
-fetch("http://ambush-api.inyourarea.co.uk/ambush/intercept", {
-  method: 'POST',
-  body: JSON.stringify(body),
-  headers: { 
-    "Content-Type": "application/json" 
-  }
-})
-.then(res => res.json())
-.then(json => console.log(json.content[0].package))
-let count = 0;
-for (i=0; i <json.content.length; i++) {
-  if (json.content[i].package.version > 10) count++
-}
-return count
-
-*/
 module.exports = async function countMajorVersionsAbove10() {
   const fetch = require('node-fetch');
   const body = {
@@ -69,5 +52,5 @@ module.exports = async function countMajorVersionsAbove10() {
     if ((parseFloat(data.content[i].package.version)) > 10) count++
   }
 
-  return count
+  return count;
 }
